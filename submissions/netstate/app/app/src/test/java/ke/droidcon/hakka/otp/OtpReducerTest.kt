@@ -101,5 +101,6 @@ class OtpReducerTest {
         
         assertEquals(OtpStatus.Error, reducer.state.value.status)
         assertEquals("", reducer.state.value.digits) // verify digits get cleared for retry
+        assertEquals(0, reducer.state.value.activeIndex)
     }
 }

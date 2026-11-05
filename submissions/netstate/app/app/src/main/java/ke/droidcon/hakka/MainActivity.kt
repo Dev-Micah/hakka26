@@ -53,37 +53,36 @@ fun HakkaTheme(content: @Composable () -> Unit) {
 @Composable
 fun HomeScreen() {
     var showOtp by remember { mutableStateOf(false) }
-
-    Surface(modifier = Modifier.fillMaxSize()) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-        ) {
-            Image(
-                painter = painterResource(R.drawable.thamani_logo),
-                contentDescription = "Thamani logo",
-                modifier = Modifier.size(64.dp),
-            )
-            Text(AppInfo.NAME, style = MaterialTheme.typography.headlineSmall)
-            Spacer(modifier = Modifier.height(32.dp))
-            Button(onClick = { showOtp = true }) {
-                Text("Login")
-            }
-        }
-    }
+    val reducer = remember { ke.droidcon.hakka.otp.OtpReducer() }
+    val state by reducer.state.collectAsState()
 
     if (showOtp) {
-        val reducer = remember { ke.droidcon.hakka.otp.OtpReducer() }
-        val state by reducer.state.collectAsState()
-
-        ke.droidcon.hakka.otp.OtpBottomSheet(
+        ke.droidcon.hakka.otp.OtpScreen(
             state = state,
             onDigitsChanged = reducer::onDigitsChanged,
             onSubmit = reducer::onSubmit,
             onResend = reducer::onResend,
             onTick = reducer::onTick,
-            onDismiss = { showOtp = false }
+            onBack = { showOtp = false }
         )
+    } else {
+        Surface(modifier = Modifier.fillMaxSize()) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.thamani_logo),
+                    contentDescription = "Thamani logo",
+                    modifier = Modifier.size(64.dp),
+                )
+                Text(AppInfo.NAME, style = MaterialTheme.typography.headlineSmall)
+                Spacer(modifier = Modifier.height(32.dp))
+                Button(onClick = { showOtp = true }) {
+                    Text("Login")
+                }
+            }
+        }
     }
 }
 
