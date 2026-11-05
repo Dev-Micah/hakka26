@@ -35,7 +35,7 @@ A 30-minute, AI-graded mobile hackathon at **droidcon Kenya 2026**.
    ```
    `<team-name>` is lowercase, uses only `a-z`, `0-9` and `-`, and is 3–30 characters long.
 4. Open a PR against `main`. Fill in the checklist.
-5. Push more commits to thttps://github.com/Dev-Micah/hakka26.githe same PR to improve your score.
+5. Push more commits to the same PR to improve your score.
 
 `TEAM.md` example:
 
